@@ -1,9 +1,14 @@
-﻿from fastapi import FastAPI
+﻿
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import Base, engine
 from app.models.network_sample import NetworkSample
+from app.models.detection_result import DetectionResult
+from app.models.alert import Alert
+from app.models.abnormal_event import AbnormalEvent
 from app.api.network import router as network_router
+from app.api.anomalies import router as anomalies_router
 
 
 Base.metadata.create_all(bind=engine)
@@ -11,7 +16,10 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Lightweight Network Anomaly Detection API",
-    description="Backend API for detecting network anomalies in small MikroTik-based hotspot networks.",
+    description=(
+        "Backend API for detecting network anomalies "
+        "in small MikroTik-based hotspot networks."
+    ),
     version="0.1.0",
 )
 
@@ -39,3 +47,4 @@ def health_check():
 
 
 app.include_router(network_router)
+app.include_router(anomalies_router)
