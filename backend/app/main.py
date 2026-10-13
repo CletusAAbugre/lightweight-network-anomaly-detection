@@ -10,6 +10,7 @@ from app.models.abnormal_event import AbnormalEvent
 from app.api.network import router as network_router
 from app.api.anomalies import router as anomalies_router
 from app.api.alerts import router as alerts_router
+from app.api.evaluation import router as evaluation_router
 
 
 Base.metadata.create_all(bind=engine)
@@ -50,3 +51,4 @@ def health_check():
 app.include_router(network_router)
 app.include_router(anomalies_router)
 app.include_router(alerts_router)
+app.include_router(evaluation_router)
