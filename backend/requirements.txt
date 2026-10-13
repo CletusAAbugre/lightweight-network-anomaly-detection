@@ -1,4 +1,5 @@
-﻿fastapi
+﻿
+fastapi
 uvicorn[standard]
 sqlalchemy
 psycopg[binary]
@@ -7,3 +8,4 @@ numpy
 scikit-learn
 python-dotenv
 pydantic
+httpx
